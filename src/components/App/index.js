@@ -8,7 +8,7 @@ import Footer from '../Footer';
 
 // == Composant
 const App = () => (
-  <div >
+  <div className='app'>
     
     <Header/>
     <Posts/>

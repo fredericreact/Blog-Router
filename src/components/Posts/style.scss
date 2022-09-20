@@ -1,0 +1,55 @@
+@use 'src/styles/style';
+
+.posts {
+  max-width: 800px;
+  margin: style.$gutter auto;
+
+  &-title {
+    color: style.$primary-color;
+    font-family: style.$title-font;
+    font-weight: style.$title-font-weight;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 0.5em;
+  }
+
+  &-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.post {
+  width: 50%;
+  padding: style.$gutter;
+
+  &:hover {
+    background-color: style.$post-hover-color;
+  }
+
+  &-title {
+    font-family: style.$title-font;
+    font-weight: style.$title-font-weight;
+    font-size: 1.3em;
+    color: style.$title-color;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  &-category {
+    background-color: style.$primary-color;
+    color: style.$light-color;
+    display: inline-block;
+    padding: 0.3em 0.7em;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  &-excerpt {
+    margin-top: 0.5rem;
+    font-weight: 300;
+    color: style.$post-text-color;
+  }
+}

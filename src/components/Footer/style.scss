@@ -1,0 +1,8 @@
+@use 'src/styles/style';
+
+.copyright {
+  text-align: center;
+  padding: style.$gutter * 2;
+  background-color: style.$dark-color;
+  color: style.$alt-color;
+}

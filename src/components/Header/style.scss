@@ -1,0 +1,17 @@
+@use 'src/styles/style';
+
+.menu {
+  text-align: center;
+  padding: style.$gutter;
+  border-bottom: 1px solid style.$alt-color;
+
+  &-link {
+    margin: 0 1rem;
+    cursor: pointer;
+    color: style.$dark-color;
+
+    &:hover, &.active {
+      color: style.$primary-color;
+    }
+  }
+}

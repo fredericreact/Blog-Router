@@ -4,7 +4,10 @@ import './style.scss';
 
 const Footer = () => {
     return (
-        <div>Footer</div>
+        <footer className='copyright'>
+
+DevOfThrones, le blog du développeur React - 2020 ©
+        </footer>
     )
 }
 
