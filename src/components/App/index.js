@@ -1,11 +1,18 @@
 // == Import npm
 import React from 'react';
 
+import './style.scss';
+import Header from '../Header';
+import Posts from '../Posts';
+import Footer from '../Footer';
+
 // == Composant
 const App = () => (
   <div >
     
-    <h1>Composant : App</h1>
+    <Header/>
+    <Posts/>
+    <Footer/>
   </div>
 );
 
