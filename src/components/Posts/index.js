@@ -4,18 +4,33 @@ import './style.scss';
 
 import Post from './Post';
 
-const Posts = () => {
+const Posts = ({postsList}) => {
     return (
         <main className='posts'>
             <h1 className='posts-title'>Dev of thrones</h1>
             <div className='posts-list'>
-                <Post/>
-                <Post/>
-                <Post/>
-                <Post/>
+            
+        {
+            postsList.map((postObject) => (
+                <Post key={postObject.id} {...postObject} />
+            ))
+
+        }
+
             </div>
         </main>
     )
+}
+
+Posts.propTypes = {
+    postsList:PropTypes.arrayOf(
+        PropTypes.shape({
+            id:PropTypes.number.isRequired,
+            title:PropTypes.string.isRequired,
+            category:PropTypes.string.isRequired,
+            excerpt:PropTypes.string.isRequired,
+        })
+    ).isRequired,
 }
 
 export default Posts;

@@ -2,17 +2,30 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './style.scss'; 
 
-const Header = () => {
+const Header = ({navLinks}) => {
     return (
         <header className='menu'>
         <nav>
-            <a className="menu-link active" href="#"> Lien 1 </a>
-            <a className="menu-link" href="#"> Lien 2 </a>
-            <a className="menu-link" href="#"> Lien 3 </a>
+        {
+            navLinks.map((navObject)=>(
+                <a key={navObject.label} className="menu-link" href={navObject.route}>{navObject.label}</a>
+    
+                ))
+
+        }   
         </nav>
         
         </header>
     )
+}
+
+Header.propTypes = {
+    navLinks: PropTypes.arrayOf(
+        PropTypes.shape({
+            route:PropTypes.string.isRequired,
+            label:PropTypes.string.isRequired,
+        })
+    ).isRequired,
 }
 
 export default Header;
