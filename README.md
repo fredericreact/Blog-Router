@@ -63,6 +63,7 @@
 
 > Si je veux qu'il affiche le composant que s'il y a "/" seulement, rajouter "exact"
 
+### Navlink
 
     <NavLink 
     key={navObject.label} 
@@ -73,6 +74,7 @@
 
 
 <br>
+
 
 
 Navlink a la place de <Link> rajoute une classe active sur les liens quand je suis sur l'url en question
@@ -90,3 +92,42 @@ Avec "exact", il va mettre une classe active que si je suis sur l'url qui corres
     to={navObject.route}>
     {navObject.label}
     </NavLink>
+
+
+### Switch
+
+
+
+> Permet de m'assurer qu'une seule route sera affichee pour une url donne.
+Sans le switch, une url pourrait afficher plusieurs routes/composants.
+
+    <Switch>
+    {
+      categories.map((categoryObject) => {
+        console.log(categoryObject);
+
+        return (
+          <Route key ={categoryObject.label} exact path={categoryObject.route}>
+        <Posts postsList={posts}/>
+        </Route>
+        )
+
+
+      })
+    }
+    <Route>
+      <NotFound/>
+    </Route>
+
+    </Switch>
+    
+    
+### Redirect    
+
+    <Redirect from="/jquery" to="/react"/> 
+    <Route>
+      <NotFound/>
+    </Route>
+
+
+> Add Redirect to redirect an url to another one
