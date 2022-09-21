@@ -12,29 +12,44 @@ import categories from '../../data/categories';
 
 
 // == Composant
+
+
+const getPostsByCategory = (posts, category) => {
+  if (category === 'Accueil') {
+    return posts
+  }
+
+const postlist = posts.filter(postObject => postObject.category ===  category)
+
+  return postlist
+}
+
 const App = () => (
   <div className='app'>
     
     <Header navLinks={categories} />
 
     <Switch>
-{
-  categories.map((categoryObject) => {
-    console.log(categoryObject);
+    {
+      categories.map((categoryObject) => {
+        console.log(categoryObject);
 
-    return (
-      <Route key ={categoryObject.label} exact path={categoryObject.route}>
-    <Posts postsList={posts}/>
-    </Route>
-    )
+        return (
+          <Route key ={categoryObject.label} exact path={categoryObject.route}>
+        <Posts postsList={getPostsByCategory(posts,categoryObject.label)}/>
+        </Route>
+        )
 
 
-  })
-}
+      })
+    }
+
     <Route>
       <NotFound/>
     </Route>
-</Switch>
+
+    </Switch>
+    
     <Footer year ={2020}/>
   </div>
 );
