@@ -1,7 +1,7 @@
 // == Import npm
 import React from 'react';
 
-import {Route, Switch} from 'react-router-dom'
+import {Route, Switch, Redirect} from 'react-router-dom'
 import './style.scss';
 import Header from '../Header';
 import Posts from '../Posts';
@@ -43,7 +43,7 @@ const App = () => (
 
       })
     }
-
+    <Redirect from="/jquery" to="/react"/> 
     <Route>
       <NotFound/>
     </Route>
