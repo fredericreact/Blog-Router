@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './style.scss'; 
+import {NavLink} from 'react-router-dom';
 
 const Header = ({navLinks}) => {
     return (
@@ -8,7 +9,13 @@ const Header = ({navLinks}) => {
         <nav>
         {
             navLinks.map((navObject)=>(
-                <a key={navObject.label} className="menu-link" href={navObject.route}>{navObject.label}</a>
+                <NavLink 
+                exact
+                key={navObject.label} 
+                className="menu-link" 
+                to={navObject.route}>
+                {navObject.label}
+                </NavLink>
     
                 ))
 
