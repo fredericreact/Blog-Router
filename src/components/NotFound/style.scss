@@ -1,0 +1,25 @@
+@use 'src/styles/style';
+
+.notFound{
+    display: flex;
+    justify-content: space-between;
+    margin: 3em 0;
+    align-items: center;
+
+}
+
+img{
+    width: 30%;
+    border-radius: 80px;
+}
+
+.text-not-found{
+    font-size: 3em;
+    text-align: center;
+    font-family: style.$title-font;
+    color: black;
+}
+
+span{
+    font-size: 1.5rem;
+}
