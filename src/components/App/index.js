@@ -1,5 +1,5 @@
 // == Import npm
-import React from 'react';
+import React, {useState} from 'react';
 
 import {Route, Switch, Redirect} from 'react-router-dom'
 import './style.scss';
@@ -10,6 +10,7 @@ import NotFound from '../NotFound';
 import posts from '../../data/posts';
 import categories from '../../data/categories';
 
+import Loading from '../Loading';
 
 // == Composant
 
@@ -24,10 +25,28 @@ const postlist = posts.filter(postObject => postObject.category ===  category)
   return postlist
 }
 
-const App = () => (
+const App = () => {
+
+  const [loading, setLoading] = useState(false);
+
+return (
+
+
+
   <div className='app'>
     
     <Header navLinks={categories} />
+
+  <button type="button" onClick={()=>{
+    setLoading(!loading);
+    console.log(loading)
+  }}>
+  loading
+  </button>
+
+  {loading&&<Loading/>}
+
+   {!loading&& (
 
     <Switch>
     {
@@ -49,10 +68,12 @@ const App = () => (
     </Route>
 
     </Switch>
+    )
+   }
     
     <Footer year ={2020}/>
   </div>
 );
-
+};
 // == Export
 export default App;
