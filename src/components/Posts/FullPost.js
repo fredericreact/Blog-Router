@@ -7,9 +7,7 @@ import { useParams } from 'react-router-dom';
 const FullPost = ({posts}) => {
     const {titredelarticle} = useParams();
 
-
    const searchedArticle = posts.find((articleObject) => titredelarticle===articleObject.slug)
-
 
     if(!searchedArticle) {
         return(

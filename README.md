@@ -132,7 +132,40 @@ Sans le switch, une url pourrait afficher plusieurs routes/composants.
 
 > Add Redirect to redirect an url to another one
 
+### UseParams
 
+```javascript
+<Route path="/article/:titredelarticle">
+  <FullPost posts={articles}/>
+</Route>
+```
+
+> Sur une route precise, j'affiche un article en particulier
+
+```javascript
+const FullPost = ({posts}) => {
+    const {titredelarticle} = useParams();
+
+   const searchedArticle = posts.find((articleObject) => titredelarticle===articleObject.slug)
+
+    if(!searchedArticle) {
+        return(
+         <NotFound/>
+        );
+    }
+
+    const {title, content, category}  = searchedArticle ;
+    return (
+        <article className='post full'>
+           <h2 className='post-title'>{title}</h2>
+           <div className='post-category'>{category}</div>
+           <p className='post-content' dangerouslySetInnerHTML={{__html: DOMpurify.sanitize(content)}}/>
+        </article>
+    )
+}
+```
+
+>Use Params me permet de recuperer les params dans l'url
 
 # Hooks
 
