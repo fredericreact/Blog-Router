@@ -167,6 +167,17 @@ const FullPost = ({posts}) => {
 
 >Use Params me permet de recuperer les params dans l'url
 
+```javascript
+    if(!searchedArticle) {
+        return(
+         <NotFound/>
+        );
+    }
+```
+
+> Ce bout de code permet d'eviter d'avoir une erreur. Parceque quand l'app se charge, les posts ne sont pas encore recuperes et donc la dedstructuration sur le 'searchedArticle' entraine une erreur.
+Ainsi, quand les posts sont recuperes, l'article sera affiche.
+
 # Hooks
 
 
