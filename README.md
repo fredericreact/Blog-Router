@@ -227,7 +227,7 @@ useEffect(() => {
 }, [count]); // Only re-run the effect if count changes
 ```
 
-> permet d'executer des choses apres que le render est pret, apres que react a update le DOM
+> permet d'executer des choses qui sont en dehors des composants
 
 > Table en argument : si la valeur change, ca va re-render, si la valeur ne change pas, ca va pa re-render
 
@@ -242,6 +242,42 @@ useEffect(() => {
 # SCSS
 
 On peut utiliser import ou use mais cest different, use tu dois referer au fichier alors que import pas besoin de referrer au fichier
+
+
+# HTML interpretation and cleaning
+
+> dans un de mes articles, j'ai de l'html je veux interprete mais si je l'interprete, c'est un hack (XSS attack).
+
+> Pour interpreter je vais utiliser 
+
+```javascript
+function createMarkup() {
+  return {__html: 'Premier &middot; Second'};
+}
+
+function MyComponent() {
+  return <div dangerouslySetInnerHTML={createMarkup()} />;
+}
+```
+
+> Pour cleaning je vais utiliser 
+
+``` javascript
+npm install dompurify
+
+```
+
+``` javascript
+let clean = DOMPurify.sanitize('<b>hello there</b>');
+
+```
+
+>Ce qui nous donne : 
+
+``` javascript
+<p className='post-excerpt' dangerouslySetInnerHTML={{__html: DOMpurify.sanitize(excerpt)}}/>
+
+```
 
 
 
