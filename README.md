@@ -134,7 +134,7 @@ Sans le switch, une url pourrait afficher plusieurs routes/composants.
 
 
 
-### Hooks
+# Hooks
 
 
 
@@ -157,6 +157,104 @@ Sans le switch, une url pourrait afficher plusieurs routes/composants.
 >useState c'est une fonction qui renvoie un table avec 2 element, le state et la methode pour le modifier.
 
 >Je peux creer plein de states a la difference des classes
+
+
+# Axios
+
+    npm install axios
+
+<br>
+
+    https://github.com/axios/axios#example
+
+<br> 
+
+    const onClickActions = () => {
+    
+    setLoading(true);
+    
+    axios({
+    method: 'get',
+    url: 'https://oclock-open-apis.vercel.app/api/blog/posts',
+    })
+    
+    .then( (response) => {
+      setArticles(response.data);
+      setLoading(false);
+    })
+    
+    .catch ((err) => {
+    console.log(err);
+    })
+    
+    .finally (()=>{
+      setLoading(false);
+    })
+    }
+
+<br>
+
+> then s'execute en cas de succs, catch en cas d'erreur et finally s'executera a chaque fois
+
+
+```javascript
+// Make a request for a user with a given ID
+axios.get('/user?ID=12345')
+
+.then(function (response) {
+// handle success
+console.log(response);
+})
+
+.catch(function (error) {
+// handle error
+console.log(error);
+})
+
+.finally(function () {
+// always executed
+});
+```
+
+> axios c'est une promise, that's why ya finally qui est present sur toutes les promesses
+
+# useEffect
+
+``` javascript
+
+useEffect(() => {
+  document.title = `You clicked ${count} times`;
+}, [count]); // Only re-run the effect if count changes
+```
+
+> permet d'executer des choses apres que le render est pret, apres que react a update le DOM
+
+> Table en argument : si la valeur change, ca va re-render, si la valeur ne change pas, ca va pa re-render
+
+> equivalent didmount : 
+    
+    useEffect(() => {}, []); 
+
+> equialent didupdate : 
+    
+    useEffect(() => {});
+
+# SCSS
+
+On peut utiliser import ou use mais cest different, use tu dois referer au fichier alors que import pas besoin de referrer au fichier
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Découverte des hooks React
 

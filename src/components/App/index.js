@@ -36,7 +36,7 @@ const App = () => {
 
   const [articles,setArticles] = useState([]);
   
-  const [prenom,setPrenom] =useState('toto');
+
 
 
 const onClickActions = () => {
