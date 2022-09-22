@@ -8,7 +8,7 @@ import Posts from '../Posts';
 import Footer from '../Footer';
 import NotFound from '../NotFound';
 
-
+import FullPost from '../Posts/FullPost';
 
 import Loading from '../Loading';
 
@@ -118,6 +118,11 @@ return (
 
       })
     }
+
+<Route path="/article/:titredelarticle">
+  <FullPost posts={articles}/>
+</Route>
+
     <Redirect from="/jquery" to="/react"/> 
     <Route>
       <NotFound/>
