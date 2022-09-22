@@ -8,7 +8,7 @@ import Posts from '../Posts';
 import Footer from '../Footer';
 import NotFound from '../NotFound';
 
-import categories from '../../data/categories';
+
 
 import Loading from '../Loading';
 
@@ -36,10 +36,10 @@ const App = () => {
 
   const [articles,setArticles] = useState([]);
   
+  const [categories,setCategories] = useState([]);
 
 
-
-const onClickActions = () => {
+const fetchPosts = () => {
   setLoading(true);
   axios({
     method: 'get',
@@ -59,9 +59,30 @@ console.log(err);
     })
 }
 
+const fetchCategories = () => {
+  setLoading(true);
+  axios({
+    method: 'get',
+    url: 'https://oclock-open-apis.now.sh/api/blog/categories',
+  })
+    .then( (response) => {
+
+      setCategories(response.data);
+     
+    })
+    .catch ((err) => {
+console.log(err);
+
+    })
+    .finally (()=>{
+      setLoading(false);
+    })
+}
+
 
   useEffect(()=> {
-    onClickActions();
+    fetchPosts();
+    fetchCategories();
   },[])
 
 
