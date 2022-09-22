@@ -1,5 +1,5 @@
 // == Import npm
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {Route, Switch, Redirect} from 'react-router-dom'
 import './style.scss';
@@ -35,6 +35,8 @@ const App = () => {
   const [loading, setLoading] = useState(false);
 
   const [articles,setArticles] = useState([]);
+  
+  const [prenom,setPrenom] =useState('toto');
 
 
 const onClickActions = () => {
@@ -57,6 +59,12 @@ console.log(err);
     })
 }
 
+
+  useEffect(()=> {
+    onClickActions();
+  },[])
+
+
   
 
 
@@ -69,9 +77,7 @@ return (
     
     <Header navLinks={categories} />
 
-  <button type="button" onClick={onClickActions}>
-  loading
-  </button>
+  
 
   {loading&&<Loading/>}
 
