@@ -1,16 +1,18 @@
 // == Import npm
 import React, {useState} from 'react';
-
+import axios from 'axios';
 import {Route, Switch, Redirect} from 'react-router-dom'
 import './style.scss';
 import Header from '../Header';
 import Posts from '../Posts';
 import Footer from '../Footer';
 import NotFound from '../NotFound';
-import posts from '../../data/posts';
+
 import categories from '../../data/categories';
 
 import Loading from '../Loading';
+
+
 
 // == Composant
 
@@ -25,9 +27,39 @@ const postlist = posts.filter(postObject => postObject.category ===  category)
   return postlist
 }
 
+
+
+
 const App = () => {
 
   const [loading, setLoading] = useState(false);
+
+  const [articles,setArticles] = useState([]);
+
+
+const onClickActions = () => {
+  setLoading(true);
+  axios({
+    method: 'get',
+    url: 'https://oclock-open-apis.vercel.app/api/blog/posts',
+  })
+    .then( (response) => {
+
+      setArticles(response.data);
+      setLoading(false);
+    })
+    .catch ((err) => {
+console.log(err);
+
+    })
+    .finally (()=>{
+      setLoading(false);
+    })
+}
+
+  
+
+
 
 return (
 
@@ -37,10 +69,7 @@ return (
     
     <Header navLinks={categories} />
 
-  <button type="button" onClick={()=>{
-    setLoading(!loading);
-    console.log(loading)
-  }}>
+  <button type="button" onClick={onClickActions}>
   loading
   </button>
 
@@ -55,7 +84,7 @@ return (
 
         return (
           <Route key ={categoryObject.label} exact path={categoryObject.route}>
-        <Posts postsList={getPostsByCategory(posts,categoryObject.label)}/>
+        <Posts postsList={getPostsByCategory(articles,categoryObject.label)}/>
         </Route>
         )
 

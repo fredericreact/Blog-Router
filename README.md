@@ -131,3 +131,127 @@ Sans le switch, une url pourrait afficher plusieurs routes/composants.
 
 
 > Add Redirect to redirect an url to another one
+
+
+
+### Hooks
+
+
+
+    import React, { useState } from 'react';
+    
+    function Example() {
+      // Déclare une nouvelle variable d'état, qu’on va appeler « count »
+      const [count, setCount] = useState(0);
+    
+      return (
+        <div>
+          <p>Vous avez cliqué {count} fois</p>
+          <button onClick={() => setCount(count + 1)}>
+            Cliquez ici
+          </button>
+        </div>
+      );
+    }
+
+>useState c'est une fonction qui renvoie un table avec 2 element, le state et la methode pour le modifier.
+
+>Je peux creer plein de states a la difference des classes
+
+# Découverte des hooks React
+
+Introduction au principe: https://fr.reactjs.org/docs/hooks-intro.html
+
+Ce sont des fonctions qui commencent TOUTES par useQQCHOSE qu'on peut utiliser au sein des composants React de type Fonction (et donc, pas dans les class).
+
+Il existe plein de hooks différents, qui permettent de rajouter des "pouvoirs" à nos fonctions. 
+
+Aujourd'hui on en n'a découvert qu'un seul, le hook qui permet de créer un state et qui s'appelle "useState".
+
+### Similarités entre le hook useState, et le state d'une class
+
+Dans les 2 cas, j'ai une source de données dynamique, et une méthode pour modifier la / les données.
+
+Si je souhaite partager ce state avec d'autres composants, ma seule option est le passage via les props.
+
+### Différences entre le hook useState, et le state d'une class
+
+#### Dans une class
+
+Il ne peut y avoir qu'UN SEUL state (objet)
+
+Le state est FORCÉMENT nommé "state", et on ne peut le consulter qu'avec "this.state".
+
+La méthode pour modifier le state est FORCÉMENT nommé "setState", et je ne peux l'utiliser qu'avec this.setState.
+
+Le state fabriqué dans une class est FORCÉMENT un objet.
+
+La méthode pour modifier ce state attend que je lui donne en paramètres seulement les propriétés de l'objet que je veux changer
+
+
+### Dans un composant fonction avec useState
+
+Je peux avoir autant de states que je veux.
+
+Le state peut être nommé comme je veux.
+
+La méthode qui modifie mon state peut être nommée comme je veux.
+
+Le type de state que je fabrique peut être ce que je veux (pas forcément un objet)
+
+La méthode qui permet de modifier mon state attens que je lui donne en paramètre mon nouveau state dans son entiereté. Ce que je lui donne va INTÉGRALEMENT remplacer le state original.
+
+## Les lifecycles
+
+### dans une class
+
+On disposait de 3 méthodes distinctes:
+
+* componentDidMount -> après premier render
+* componentDidUpdate -> après tous les render suivants
+* componentWillUnmount -> avant que le composant soit détruit
+
+### dans un composant fonction
+
+On dispose d'un seul hook: useEffect
+Ce hook qui permet d'exécuter du code (des fonctions) automatiquement à certains moments de la vie d'un composant (lifecycles). Ex, dés qu'il est affiché la première fois, ou dés qu'il est sur le point d'être retiré du DOM.
+
+Un exemple super courant de cas d'utilisation de useEffect c'est les requêtes vers une API. Généralement, on souhaite lancer une requête dés que le composant est prêt, pour ne pas faire attendre l'user.
+
+Si je veux l'équivalent du didMount
+
+```javascript
+useEffect(() => {}, []);
+// Ici react va examiner le contenu du tableau, à la rechercher de variables
+// pour savoir si leur contenus a changé depuis le dernier render. Si pas de 
+// variable dans le tableau, pas de changement possible, donc pas de réexécution
+
+```
+
+Si je veux l'équivalent du didUpdate (plus le didMount)
+
+```javascript
+useEffect(() => {});
+// Sans tableau, la fonction est exécutée après chaque render sans exception
+
+```
+
+Si je veux l'équivalent du willUnmount
+
+```javascript
+
+const sayBye = () => {
+  console.log('bye');
+};
+
+
+useEffect(() => {
+
+    // Ce que return ma fonction DOIT être une autre fonction.
+    // cette autre fonction sera exécutée juste avant la destruction (son retrait du DOM)
+    // du composant
+
+    return sayBye;
+});
+
+```
